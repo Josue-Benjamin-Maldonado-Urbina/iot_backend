@@ -131,3 +131,11 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://tu-dominio.com",
 ]
+
+DEBUG = False
+ALLOWED_HOSTS = ['your-app.onrender.com']
+
+import os
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
