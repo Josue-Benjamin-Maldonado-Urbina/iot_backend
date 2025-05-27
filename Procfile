@@ -1,1 +1,1 @@
-web: gunicorn backend.invernadero_project.invernadero_project.wsgi --log-file -
+web: gunicorn invernadero_project.settings --log-file -
