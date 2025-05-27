@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('taXggV8BAthPyCBAlFpRMu7OJhtf-cI3NIytINmwM2Xj01GqXY4og0sWeHhqas7M6zo')
+SECRET_KEY = config('DJANGO_SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 
@@ -81,24 +81,13 @@ WSGI_APPLICATION = 'invernadero_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('iot_inverner'),
-        'USER': config('postgres'),
-        'PASSWORD': config('bemu_123'),
-        'HOST': config('localhost', default='localhost'),
-        'PORT': config('5432', default='5432'),
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST', default='localhost'),
+        'PORT': config('DB_PORT', default='5432'),
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'iot_inverner',
-#         'USER': 'postgres',
-#         'PASSWORD': 'bemu_123',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
 
 
 # Password validation
