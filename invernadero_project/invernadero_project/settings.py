@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
+import os
+from decouple import config # type: ignore
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,10 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-rel-bs3yr7531+bmjoj&29tyrmkf6&9)4bqlqx_=zddu^37$)e'
+SECRET_KEY = config('taXggV8BAthPyCBAlFpRMu7OJhtf-cI3NIytINmwM2Xj01GqXY4og0sWeHhqas7M6zo')
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -78,10 +80,25 @@ WSGI_APPLICATION = 'invernadero_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('iot_inverner'),
+        'USER': config('postgres'),
+        'PASSWORD': config('bemu_123'),
+        'HOST': config('localhost', default='localhost'),
+        'PORT': config('5432', default='5432'),
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'iot_inverner',
+#         'USER': 'postgres',
+#         'PASSWORD': 'bemu_123',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation
@@ -135,7 +152,6 @@ CORS_ALLOWED_ORIGINS = [
 DEBUG = False
 ALLOWED_HOSTS = ['your-app.onrender.com']
 
-import os
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
